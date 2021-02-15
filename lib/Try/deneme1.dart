@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tatli_cesitleri/Materials/Cards.dart';
 
 class Deneme1 extends StatelessWidget {
   @override
@@ -19,5 +20,3 @@ class Deneme1 extends StatelessWidget {
     );
   }
 }
-
-List<String> categories = ["elma", "armut", "kayısı", "portakal", "ayva"];

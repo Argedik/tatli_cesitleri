@@ -23,23 +23,6 @@ class _BodyState extends State<Body> {
     'assets/Tatlilar/Sutlac.jpg',
     'assets/Tatlilar/Sutlu_Nuriye.jpg',
   ];
-  List<Container> kartlar = [
-    orangeCard(1),
-    orangeCard(2),
-    orangeCard(3),
-    orangeCard(4),
-    orangeCard(5),
-    orangeCard(6)
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    print("deneme");
-    kartlar = [
-      orangeCard(1),
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +104,7 @@ class _BodyState extends State<Body> {
           begin: Alignment(0.95, -1.0),
           end: Alignment(-1.0, 1.0),
           stops: [0.0, 0.197, 0.678, 1.0],
-          colors: renk1,
+          colors: renk3,
         ),
         boxShadow: [
           BoxShadow(
