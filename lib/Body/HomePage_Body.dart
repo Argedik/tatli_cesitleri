@@ -104,7 +104,7 @@ class _BodyState extends State<Body> {
           begin: Alignment(0.95, -1.0),
           end: Alignment(-1.0, 1.0),
           stops: [0.0, 0.197, 0.678, 1.0],
-          colors: renk3,
+          colors: renk1,
         ),
         boxShadow: [
           BoxShadow(
