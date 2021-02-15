@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "592715968560",
+    "project_id": "tatlicesitleri-a4370",
+    "storage_bucket": "tatlicesitleri-a4370.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592715968560:android:ac1c35a1b93d077cf0fdf5",
+        "android_client_info": {
+          "package_name": "com.example.tatli_cesitleri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592715968560-b02udbqjligqm49k5aoldo0jhf7va7d6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGl6qTF6R-bVcVlgq2yonLzM0bOUMM_Aw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592715968560-b02udbqjligqm49k5aoldo0jhf7va7d6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
