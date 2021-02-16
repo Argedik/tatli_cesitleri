@@ -26,6 +26,52 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Color> renk1 = [
+      Color(0xfff5a31a),
+      Color(0xffedf4f2),
+      Color(0xffedf4f2),
+      Color(0xfff5a31a)
+    ];
+    final List<Color> renk2 = [
+      Color(0xffD32626),
+      Color(0xffedf4f2),
+      Color(0xffedf4f2),
+      Color(0xffD32626)
+    ];
+    final List<Color> renk3 = [
+      Color(0xff79D70F),
+      Color(0xffedf4f2),
+      Color(0xffedf4f2),
+      Color(0xff79D70F)
+    ];
+    final List<Color> renk4 = [
+      Color(0xff53D1FF),
+      Color(0xffedf4f2),
+      Color(0xffedf4f2),
+      Color(0xff53D1FF)
+    ];
+    final List<Color> renk5 = [
+      Color(0xff11698E),
+      Color(0xffedf4f2),
+      Color(0xffedf4f2),
+      Color(0xff11698E)
+    ];
+    final List<Color> renk6 = [
+      Color(0xffFFFF00),
+      Color(0xffedf4f2),
+      Color(0xffedf4f2),
+      Color(0xffFFFF00)
+    ];
+
+    final List<List<Color>> renkler = [
+      renk1,
+      renk2,
+      renk3,
+      renk4,
+      renk5,
+      renk6
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -34,124 +80,95 @@ class _BodyState extends State<Body> {
           child: Column(
             children: [
               Expanded(
-                child: GridView.count(
+                child: GridView.builder(
                   shrinkWrap: true,
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 17.0,
-                  crossAxisSpacing: 20.0,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 17.0,
+                    crossAxisSpacing: 20.0,
+                    childAspectRatio: (137 / 180),
+                  ),
                   padding: EdgeInsets.all(10.0),
-                  childAspectRatio: (137 / 180),
-                  children: _fayanslar
+                  itemCount: renkler.length,
+                  semanticChildCount: ,
+                  itemBuilder: (BuildContext context, int index) => Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(5.0),
+                        padding:
+                            EdgeInsets.only(left: 9.0, right: 9.0, top: 6.0),
+                        height: 180,
+                        width: 137,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(44.0),
+                          gradient: LinearGradient(
+                            begin: Alignment(0.95, -1.0),
+                            end: Alignment(-1.0, 1.0),
+                            stops: [0.0, 0.197, 0.678, 1.0],
+                            colors: renk1,
+                            //colors: renkler[renkKodu],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0x29000000),
+                              offset: Offset(0, 8),
+                              blurRadius: 6,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Container(
+                                  height: 90,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: const Color(0x29000000),
+                                        offset: Offset(0, 8),
+                                        blurRadius: 6,
+                                      ),
+                                    ],
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/Tatlilar/Sutlac.jpg"),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                "AŞURE",
+                                style: TextStyle(
+                                    color: Colors.yellow,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  /*children: _fayanslar
                       .map(
                         (item) => buildCard(item),
                       )
-                      .toList(),
+                      .toList(),*/
                 ),
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Container buildCard(String item) {
-    List<Color> renk1 = [
-      Color(0xfff5a31a),
-      Color(0xffedf4f2),
-      Color(0xffedf4f2),
-      Color(0xfff5a31a)
-    ];
-    List<Color> renk2 = [
-      Color(0xffD32626),
-      Color(0xffedf4f2),
-      Color(0xffedf4f2),
-      Color(0xffD32626)
-    ];
-    List<Color> renk3 = [
-      Color(0xff79D70F),
-      Color(0xffedf4f2),
-      Color(0xffedf4f2),
-      Color(0xff79D70F)
-    ];
-    List<Color> renk4 = [
-      Color(0xff53D1FF),
-      Color(0xffedf4f2),
-      Color(0xffedf4f2),
-      Color(0xff53D1FF)
-    ];
-    List<Color> renk5 = [
-      Color(0xff11698E),
-      Color(0xffedf4f2),
-      Color(0xffedf4f2),
-      Color(0xff11698E)
-    ];
-    List<Color> renk6 = [
-      Color(0xffFFFF00),
-      Color(0xffedf4f2),
-      Color(0xffedf4f2),
-      Color(0xffFFFF00)
-    ];
-
-    return Container(
-      margin: EdgeInsets.all(5.0),
-      padding: EdgeInsets.only(left: 9.0, right: 9.0, top: 6.0),
-      height: 180,
-      width: 137,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(44.0),
-        gradient: LinearGradient(
-          begin: Alignment(0.95, -1.0),
-          end: Alignment(-1.0, 1.0),
-          stops: [0.0, 0.197, 0.678, 1.0],
-          colors: renk1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0x29000000),
-            offset: Offset(0, 8),
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Container(
-                height: 90,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0x29000000),
-                      offset: Offset(0, 8),
-                      blurRadius: 6,
-                    ),
-                  ],
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(20.0),
-                  image: DecorationImage(
-                    image: AssetImage(item),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              "AŞURE",
-              style: TextStyle(
-                  color: Colors.yellow,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0),
-            ),
-          ),
-        ],
       ),
     );
   }
