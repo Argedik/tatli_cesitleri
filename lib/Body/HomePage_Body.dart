@@ -89,8 +89,7 @@ class _BodyState extends State<Body> {
                     childAspectRatio: (137 / 180),
                   ),
                   padding: EdgeInsets.all(10.0),
-                  itemCount: renkler.length,
-                  semanticChildCount: ,
+                  itemCount: _fayanslar.length,
                   itemBuilder: (BuildContext context, int index) => Column(
                     children: [
                       Container(
@@ -105,8 +104,7 @@ class _BodyState extends State<Body> {
                             begin: Alignment(0.95, -1.0),
                             end: Alignment(-1.0, 1.0),
                             stops: [0.0, 0.197, 0.678, 1.0],
-                            colors: renk1,
-                            //colors: renkler[renkKodu],
+                            colors: renkler[index % 6],
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -136,8 +134,7 @@ class _BodyState extends State<Body> {
                                     color: Colors.blue,
                                     borderRadius: BorderRadius.circular(20.0),
                                     image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/Tatlilar/Sutlac.jpg"),
+                                      image: AssetImage(_fayanslar[index]),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
