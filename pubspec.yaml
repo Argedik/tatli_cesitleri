@@ -42,7 +42,6 @@ dependencies:
   http: ^0.12.2
   grouped_list: ^3.7.1
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -65,6 +64,7 @@ flutter:
   assets:
     - assets/Materials/
     - assets/Tatlilar/
+    - assets/Icons/Giris_Yap/
 
 
 
