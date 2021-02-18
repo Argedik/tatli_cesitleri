@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tatli_cesitleri/Body/HomePage_Body.dart';
 import 'package:tatli_cesitleri/Body/Urunler.dart';
-
 import 'Body/Sepetim.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //double genislik = MediaQuery.of(context).size.width;
     double yukseklik = MediaQuery.of(context).size.height;
+    color
 
     return Scaffold(
       backgroundColor: const Color(0xff79d70f),
@@ -51,33 +51,91 @@ class _HomePageState extends State<HomePage> {
       body: Body(),
       //body: _icerikler[_aktifIcerikNo],
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.all(0.0),
-          children: [
-            UserAccountsDrawerHeader(
-              accountName: Text("Enes Gdik"),
-              accountEmail: Text("gedikas@hotmail.com"),
-              currentAccountPicture: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        "https://cdn.pixabay.com/photo/2018/07/31/22/08/lion-3576045_960_720.jpg"),
-                    fit: BoxFit.cover,
+        child: Container(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              UserAccountsDrawerHeader(
+                accountName: Text("Enes Gdik"),
+                accountEmail: Text("gedikas@hotmail.com"),
+                currentAccountPicture: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          "https://cdn.pixabay.com/photo/2018/07/31/22/08/lion-3576045_960_720.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                decoration: BoxDecoration(color: Colors.red[400]),
+              ),
+              ListTile(
+                title: Text("Giriş Yap"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.login,
+                  color: Colors.black,
                 ),
               ),
-              decoration: BoxDecoration(color: Colors.red[400]),
-            ),
-            ListTile(title: Text("Siparişlerim"), onTap: () {}),
-            ListTile(title: Text("İndirimlerim"), onTap: () {}),
-            ListTile(title: Text("Ayarlar"), onTap: () {}),
-            ListTile(
-                title: Text("Çıkış Yap"),
-                onTap: () {
-                  Navigator.pop(context);
-                }),
-          ],
+              ListTile(
+                title: Text("Bildirimler"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.notifications_active_sharp,
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("SSS"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.contact_support,
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("İletişim"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.call,
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("Hata Bildir"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.warning,
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("Uygulamayı Puanla"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.star_sharp,
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("Uygulamayı Paylaş"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.share,
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("Hakkımızda"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.perm_device_information_outlined,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
