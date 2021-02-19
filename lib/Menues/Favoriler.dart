@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:tatli_cesitleri/Body/Urunler.dart';
-import 'package:tatli_cesitleri/Menues/Ana_Sayfa.dart';
-import 'package:tatli_cesitleri/Menues/Favoriler.dart';
-import 'package:tatli_cesitleri/Menues/Profil.dart';
-import 'package:tatli_cesitleri/Menues/Toplum.dart';
-import 'Body/Sepetim.dart';
+import 'package:tatli_cesitleri/Menues/Details/FavoriKategorileri.dart';
 
-class HomePage extends StatefulWidget {
-  static const String routeName = '/HomePage';
+class Favoriler extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _FavorilerState createState() => _FavorilerState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _aktifIcerikNo = 2;
-  List<Widget> _icerikler;
+class _FavorilerState extends State<Favoriler>
+    with SingleTickerProviderStateMixin {
+  TabController tvController;
+  Size get boyut => MediaQuery.of(context).size;
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-
-    _icerikler = [
-      Urunler(),
-      Sepetim(),
-      Body(),
-      Favoriler(),
-      Profil(),
-    ];
+    tvController = TabController(length: 3, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    //double genislik = MediaQuery.of(context).size.width;
-    //double yukseklik = MediaQuery.of(context).size.height;
-
-    Color bottom_navigation_passive_color = Colors.green[300];
-    Color bottom_navigation_active_color = Colors.blue[600];
-
+    double yukseklik = MediaQuery.of(context).size.height;
+    int drawer_setting_name_colors = 0xffF5A31A;
+    int drawer_setting_icon_colors = 0xffD32626;
     return Scaffold(
-      backgroundColor: const Color(0xff79d70f),
-      body: _icerikler[_aktifIcerikNo],
-      /*drawer: Drawer(
+      backgroundColor: Color(0xffD32626),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        toolbarHeight: yukseklik * 0.05,
+        backgroundColor: Colors.yellowAccent,
+        elevation: 0.0,
+        centerTitle: true,
+        title: Text(
+          'Ana Sayfa',
+          style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xff11698e),
+          ),
+        ),
+      ),
+      drawer: Drawer(
         child: Container(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -211,82 +213,117 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-      ),*/
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _aktifIcerikNo,
-        selectedItemColor: bottom_navigation_active_color,
-        unselectedItemColor: bottom_navigation_passive_color,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark),
-              title: Text(
-                "Favoriler",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.addchart),
-              title: Text(
-                "Zirve",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 25.0),
-            title: Text(
-              "Ana Sayfa",
-              style: navigationMenuTextStyle(bottom_navigation_active_color),
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.yellowAccent,
+              border: Border(
+                  top: BorderSide(width: 1, color: Colors.orangeAccent[200])),
+            ),
+            child: TabBar(
+              controller: tvController,
+              //seçili yerin alt çizgisi
+              //indicatorColor: Colors.yellow,
+              indicatorSize: TabBarIndicatorSize.label,
+              indicator: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.blueAccent, Colors.yellowAccent]),
+                  borderRadius: BorderRadius.circular(44),
+                  color: Colors.blueAccent),
+              labelColor: Colors.red[600],
+              unselectedLabelColor: Colors.orange[400],
+              isScrollable: true,
+              labelStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              tabs: [
+                Tab(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text("Favoriler",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600)),
+                  ),
+                ),
+                Tab(
+                    child: Text("Yemek Uyumu",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600))),
+                Tab(
+                    child: Text("Sağlık",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600))),
+              ],
             ),
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              title: Text(
-                "Toplum",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.perm_contact_calendar_rounded),
-              title: Text(
-                "Profil",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
+          Expanded(
+            child: TabBarView(
+              controller: tvController,
+              children: [
+                FavoriKategorileri(
+                  kategori: "asasdd",
+                ),
+                FavoriKategorileri(kategori: "deneme"),
+                FavoriKategorileri(kategori: "absrt"),
+              ],
+            ),
+          ),
         ],
-        onTap: (int tiklananButonPozisyonNo) {
-          setState(() {
-            _aktifIcerikNo = tiklananButonPozisyonNo;
-          });
-        },
       ),
     );
   }
 
-  TextStyle navigationMenuTextStyle(Color bottom_navigation_active_color) {
-    return TextStyle(
-        color: bottom_navigation_active_color,
-        fontWeight: FontWeight.bold,
-        fontSize: 15.0);
-  }
-
-  /*TextStyle drawerTextStyle(int color1) {
+  TextStyle drawerTextStyle(int color1) {
     return TextStyle(
       fontWeight: FontWeight.bold,
       color: Color(color1),
       fontSize: 20.0,
     );
-  }*/
+  }
 }
 
-/*bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _aktifIcerikNo,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.red,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home), title: Text("Ürünler")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), title: Text("Sepetim"))
-        ],
-        onTap: (int tiklananButonPozisyonNo) {
-          setState(() {
-            _aktifIcerikNo = tiklananButonPozisyonNo;
-          });
-        },
-      ),*/
+/*                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(44),
+                        border: Border.all(color: Color(0xffF5A31A), width: 1)),*/
+
+/*
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TabBar(
+          controller: televizyonKontrolcusu,
+          indicatorColor: Colors.blue,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey,
+          isScrollable: true,
+          labelStyle: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight
+                  .w500), // w500 textin kalınlık seviyesi rakam arttıkça kalınlık artıyor
+          tabs: [
+            Tab(child: Text("Temel Gıda")),
+            Tab(child: Text("Şekerleme")),
+            Tab(child: Text("İçecekler")),
+            Tab(child: Text("Temizlik")),
+          ],
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: televizyonKontrolcusu,
+            children: [
+              Kategori(kategori: "temel gıda"),
+              Kategori(kategori: "şekerleme"),
+              Kategori(kategori: "içecekler"),
+              Kategori(kategori: "temizlik"),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+*/
