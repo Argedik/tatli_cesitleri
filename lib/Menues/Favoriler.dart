@@ -24,13 +24,12 @@ class _FavorilerState extends State<Favoriler>
     int drawer_setting_name_colors = 0xffF5A31A;
     int drawer_setting_icon_colors = 0xffD32626;
     return Scaffold(
-      backgroundColor: Color(0xffD32626),
+      backgroundColor: Colors.redAccent,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.orangeAccent,
         ),
-        toolbarHeight: yukseklik * 0.05,
-        backgroundColor: Colors.yellowAccent,
+        backgroundColor: Colors.redAccent,
         elevation: 0.0,
         centerTitle: true,
         title: Text(
@@ -38,9 +37,49 @@ class _FavorilerState extends State<Favoriler>
           style: TextStyle(
             fontSize: 23,
             fontWeight: FontWeight.bold,
-            color: const Color(0xff11698e),
+            color: Colors.orangeAccent,
           ),
         ),
+        bottom: TabBar(
+          controller: tvController,
+          //seçili yerin alt çizgisi
+          //indicatorColor: Colors.yellow,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Colors.blueAccent,
+                Colors.greenAccent,
+              ]),
+              borderRadius: BorderRadius.circular(44)),
+          labelColor: Colors.yellowAccent,
+          unselectedLabelColor: Colors.orangeAccent,
+          tabs: [
+            Tab(
+                icon: Icon(Icons.bookmark),
+                iconMargin: EdgeInsets.all(0.0),
+                child: Text("Favoriler",
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w600))),
+            Tab(
+                child: Text("Yemek Uyumu",
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w600))),
+            Tab(
+                child: Text("Sağlık",
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w600))),
+          ],
+        ),
+        //toolbarHeight: yukseklik * 0.05,
       ),
       drawer: Drawer(
         child: Container(
@@ -220,50 +259,18 @@ class _FavorilerState extends State<Favoriler>
             alignment: Alignment.center,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.yellowAccent,
               border: Border(
                   top: BorderSide(width: 1, color: Colors.orangeAccent[200])),
-            ),
-            child: TabBar(
-              controller: tvController,
-              //seçili yerin alt çizgisi
-              //indicatorColor: Colors.yellow,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blueAccent, Colors.yellowAccent]),
-                  borderRadius: BorderRadius.circular(44),
-                  color: Colors.blueAccent),
-              labelColor: Colors.red[600],
-              unselectedLabelColor: Colors.orange[400],
-              isScrollable: true,
-              labelStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              tabs: [
-                Tab(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text("Favoriler",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600)),
-                  ),
-                ),
-                Tab(
-                    child: Text("Yemek Uyumu",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600))),
-                Tab(
-                    child: Text("Sağlık",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600))),
-              ],
             ),
           ),
           Expanded(
             child: TabBarView(
               controller: tvController,
               children: [
-                FavoriKategorileri(
-                  kategori: "asasdd",
+                Center(
+                  child: FavoriKategorileri(
+                    kategori: "asasdd",
+                  ),
                 ),
                 FavoriKategorileri(kategori: "deneme"),
                 FavoriKategorileri(kategori: "absrt"),

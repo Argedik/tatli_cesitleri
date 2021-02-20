@@ -18,8 +18,9 @@ class _ProfilState extends State<Profil> {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: Icon(Icons.cloud_outlined),
-              ),
+                  child: Text("Sağlık",
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600))),
               Tab(
                 icon: Icon(Icons.beach_access_sharp),
               ),

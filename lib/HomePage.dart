@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:tatli_cesitleri/Body/Urunler.dart';
 import 'package:tatli_cesitleri/Menues/Ana_Sayfa.dart';
@@ -212,42 +213,14 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),*/
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _aktifIcerikNo,
-        selectedItemColor: bottom_navigation_active_color,
-        unselectedItemColor: bottom_navigation_passive_color,
+      bottomNavigationBar: ConvexAppBar(
+        initialActiveIndex: _aktifIcerikNo,
         items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark),
-              title: Text(
-                "Favoriler",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.addchart),
-              title: Text(
-                "Zirve",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 25.0),
-            title: Text(
-              "Ana Sayfa",
-              style: navigationMenuTextStyle(bottom_navigation_active_color),
-            ),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              title: Text(
-                "Toplum",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.perm_contact_calendar_rounded),
-              title: Text(
-                "Profil",
-                style: navigationMenuTextStyle(bottom_navigation_active_color),
-              )),
+          TabItem(icon: Icons.bookmark, title: "Favoriler"),
+          TabItem(icon: Icons.bookmark, title: "Favoriler"),
+          TabItem(icon: Icons.bookmark, title: "Favoriler"),
+          TabItem(icon: Icons.bookmark, title: "Favoriler"),
+          TabItem(icon: Icons.bookmark, title: "Favoriler"),
         ],
         onTap: (int tiklananButonPozisyonNo) {
           setState(() {

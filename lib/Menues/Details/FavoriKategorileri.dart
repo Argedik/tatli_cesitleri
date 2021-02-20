@@ -15,7 +15,9 @@ class _FavoriKategorileriState extends State<FavoriKategorileri> {
     return Text(
       widget.kategori,
       style: TextStyle(
-          fontSize: 35, fontWeight: FontWeight.bold, color: Colors.yellow),
+          fontSize: 35,
+          fontWeight: FontWeight.bold,
+          color: Colors.orangeAccent),
     );
   }
 }
