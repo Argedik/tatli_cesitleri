@@ -14,7 +14,6 @@ import 'package:uuid/uuid.dart';
 import 'package:timeago/timeago.dart';
 */
 import './HomePage.dart';
-import 'Try/deneme2.dart';
 //import 'Try/deneme1.dart';
 
 void main() async {
@@ -172,11 +171,3 @@ class StartPage extends StatelessWidget {
     );
   }
 }
-/*decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment(0.0, 0.0),
-              radius: 0.5,
-              colors: [const Color(0xfcf5a31a), const Color(0xfcd32626)],
-              stops: [0.0, 1.0],
-            ),
-          ),*/

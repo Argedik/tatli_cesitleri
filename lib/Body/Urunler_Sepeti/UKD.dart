@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tatli_cesitleri/Materials/Cards.dart';
+import 'package:tatli_cesitleri/Models/Cards.dart';
 
 class UrunDetay extends StatelessWidget {
   final String isim;
