@@ -19,12 +19,13 @@ class _ToplumState extends State<Toplum> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    //double yukseklik = MediaQuery.of(context).size.height;
+    double yukseklik = MediaQuery.of(context).size.height;
     int drawerSettingNameColors = 0xffF5A31A;
     int drawerSettingIconColors = 0xffD32626;
     return Scaffold(
       backgroundColor: Colors.redAccent,
       appBar: AppBar(
+        toolbarHeight: yukseklik * 0.15,
         iconTheme: IconThemeData(
           color: Colors.orangeAccent,
         ),
