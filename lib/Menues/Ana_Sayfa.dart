@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:tatli_cesitleri/Dao/Firebase.dart';
 import 'package:tatli_cesitleri/Menues/Details/AnaSayfa_Kategorileri.dart';
 import 'package:tatli_cesitleri/Models/Cards.dart';
 
@@ -8,6 +12,15 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  final _database = FirebaseFirestore.instance;
+  Future<List<FirebaseFile>> futureFiles;
+  @override
+  void initState() {
+    super.initState();
+
+    futureFiles = FirebaseApi.listAll('Resimler/');
+  }
+
   final List<String> _resimler = [
     'assets/Tatlilar/Asure.jpg',
     'assets/Tatlilar/Dondurma.jpg',
@@ -48,6 +61,9 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final Yemekler = _database.collection("Yemekler");
+    final tarhana = Yemekler.doc('tarhana');
+
     double yukseklik = MediaQuery.of(context).size.height;
     int drawerSettingNameColors = 0xffF5A31A;
     int drawerSettingIconColors = 0xffD32626;
@@ -70,6 +86,17 @@ class _BodyState extends State<Body> {
       backgroundColor: Colors.lightBlueAccent[100],
       appBar: buildAppBar(yukseklik),
       drawer: buildDrawer(drawerSettingNameColors, drawerSettingIconColors),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          /*UserCredential userCredential =
+              await FirebaseAuth.instance.signInAnonymously();
+          print(userCredential);*/
+          FirebaseStorage _storage = FirebaseStorage.instance;
+          var refFoods =
+              await _storage.ref().child("Asure.jpg").getDownloadURL();
+          //print(refFoods);
+        },
+      ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -85,6 +112,30 @@ class _BodyState extends State<Body> {
           padding: EdgeInsets.only(left: 15.0, right: 15.0),
           child: Column(
             children: [
+              FutureBuilder<List<FirebaseFile>>(
+                future: futureFiles,
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Center(child: CircularProgressIndicator());
+                    default:
+                      if (snapshot.hasError) {
+                        return Center(child: Text('Some error occurred!'));
+                      } else {
+                        final files = snapshot.data;
+                        return Expanded(
+                          child: ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              final file = files[index];
+                              return buildFile(context, file);
+                            },
+                          ),
+                        );
+                      }
+                  }
+                },
+              ),
               Expanded(
                 child: GridView.builder(
                   shrinkWrap: true,
@@ -189,12 +240,38 @@ class _BodyState extends State<Body> {
                   ),
                 ),
               ),
+              Text("absürt ${tarhana.id}"),
+              Divider(),
+              StreamBuilder(
+                stream: tarhana.snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> asyncSnapshot) {
+                  if (!asyncSnapshot.hasData) {
+                    return Text("absürtlük yapma");
+                  } else {
+                    var documentSnapshot = asyncSnapshot.data;
+                    var mapData = documentSnapshot.data() as Map;
+                    return Text("${mapData["Açıklama"]}");
+                  }
+                },
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget buildFile(BuildContext context, FirebaseFile file) => ListTile(
+        title: Text(
+          file.name,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.underline,
+            color: Colors.blue,
+          ),
+        ),
+      );
 
   Drawer buildDrawer(int drawerSettingNameColors, int drawerSettingIconColors) {
     return Drawer(

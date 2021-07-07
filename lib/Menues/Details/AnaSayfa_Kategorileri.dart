@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tatli_cesitleri/Menues/Details/Body/body.dart';
-import 'package:tatli_cesitleri/Models/Cards.dart';
 
 class AnaSayfaKategorileri extends StatefulWidget {
   final String description, product, image;

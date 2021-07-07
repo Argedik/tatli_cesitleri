@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tatli_cesitleri/Models/Cards.dart';
 //firebase kullanımı
 /*import 'package:cloud_firestore/cloud_firestore.dart';
 // firebase id şifre kullanımı
@@ -14,27 +15,58 @@ import 'package:uuid/uuid.dart';
 import 'package:timeago/timeago.dart';
 */
 import './HomePage.dart';
+import 'Body/GetItDoneDenemesi.dart';
 //import 'Try/deneme1.dart';
 
-void main() async {
+Future<void> main() async {
   //aşağıdaki 3 satır kod statusbar ı transparent hale getiriyor
   /*SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.light));*/
 
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //sadece theme data kısmını 24.02.2021 tarihinde ana sayfa kart detaylarından sonra yaptım
+      theme: ThemeData(
+          primaryColor: Colors.green,
+          primarySwatch: Colors.green,
+          scaffoldBackgroundColor: Colors.green,
+          accentColor: Colors.green,
+          appBarTheme: AppBarTheme(color: Colors.green),
+          textTheme: TextTheme(
+              subtitle1: TextStyle(color: Colors.white),
+              headline3: TextStyle(color: Colors.white)),
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       home: StartPage(),
+
+      /*FutureBuilder(
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasError) {
+            return Text("absürt");
+          } else if (snapshot.hasData) {
+            return StartPage();
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),*/
+
+      //StartPage(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
+        // eğer parantezler içindeki değer case'nin karşısındaki değere eşitse çalış
+        // default eğer herhangi bir şart sağlanmıyorsa çalışır.
         switch (settings.name) {
           case HomePage.routeName:
             return MaterialPageRoute(builder: (context) => HomePage());

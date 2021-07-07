@@ -35,7 +35,8 @@ class _KategoriGovdesiState extends State<KategoriGovdesi> {
             child: Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  margin: EdgeInsets.only(
+                      top: size.height * 0.3, bottom: size.height * 0.075),
                   padding: EdgeInsets.only(
                     top: size.height * 0.12,
                     left: 20.0,
@@ -49,103 +50,107 @@ class _KategoriGovdesiState extends State<KategoriGovdesi> {
                       topRight: Radius.circular(44),
                     ),
                   ),
-                  child: Column(
+                  child: ListView(
                     children: [
-                      Row(
+                      Column(
                         children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Color"),
-                                Row(
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    RenkliNokta(
-                                      color: Colors.blueAccent,
-                                      isSelected: true,
+                                    Text("Color"),
+                                    Row(
+                                      children: [
+                                        RenkliNokta(
+                                          color: Colors.blueAccent,
+                                          isSelected: true,
+                                        ),
+                                        RenkliNokta(color: Colors.yellowAccent),
+                                        RenkliNokta(color: Colors.redAccent),
+                                      ],
                                     ),
-                                    RenkliNokta(color: Colors.yellowAccent),
-                                    RenkliNokta(color: Colors.redAccent),
                                   ],
                                 ),
+                              ),
+                              Expanded(
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.blueAccent),
+                                    children: [
+                                      TextSpan(text: "Soğuk Tatlı\n"),
+                                      TextSpan(
+                                        text: "15 dakika",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.blueAccent),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
+                            child: Text(
+                              dummyText,
+                              style: TextStyle(height: 1.5),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          FavoriButonveSayac(),
+                          SizedBox(height: 10.0),
+                          //alt detay menü en alttaki büyük buton
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(right: 20.0),
+                                  height: 50,
+                                  width: 58,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: widget.renk),
+                                    borderRadius: BorderRadius.circular(18),
+                                  ),
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.add_moderator,
+                                      color: widget.renk,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: FlatButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0)),
+                                      color: widget.renk,
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Deneme".toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                           ),
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                style: TextStyle(color: Colors.blueAccent),
-                                children: [
-                                  TextSpan(text: "Soğuk Tatlı\n"),
-                                  TextSpan(
-                                    text: "15 dakika",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline5
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blueAccent),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
                         ],
-                      ),
-                      SizedBox(height: 10.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Text(
-                          dummyText,
-                          style: TextStyle(height: 1.5),
-                        ),
-                      ),
-                      SizedBox(height: 10.0),
-                      FavoriButonveSayac(),
-                      SizedBox(height: 10.0),
-                      //alt detay menü en alttaki büyük buton
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 20.0),
-                              height: 50,
-                              width: 58,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: widget.renk),
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.shopping_cart,
-                                  color: widget.renk,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                            Expanded(
-                              child: SizedBox(
-                                height: 50,
-                                child: FlatButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(18.0)),
-                                  color: widget.renk,
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Deneme".toUpperCase(),
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
                       ),
                     ],
                   ),
